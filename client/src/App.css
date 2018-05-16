@@ -1,0 +1,126 @@
+* {
+    box-sizing: content-box;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+#root {
+    min-height: 100%;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .container > header {
+        width: 100%;
+        background: white;
+        border-bottom: 1px solid #CACBCA;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+    }
+
+        .container > header #logo {
+            padding-left: 20px;
+            height: 80px;
+        }
+
+            .container > header #logo img {
+                max-height: 100%;
+            }
+
+        .container > header nav ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+            .container > header nav ul li {
+                padding: 10px;
+                padding-right: 20px;
+                display: inline-block;
+            }
+
+                .container > header nav ul li a {
+                    font-size: 14px;
+                    display: block;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    color: black;
+                }
+
+                    .container > header nav ul li a.active {
+                        font-weight: bold;
+                    }
+
+    .container > .content {
+        width: 100%;
+        flex: 1;
+    }
+
+    .container > footer {
+        width: 100%;
+        border-top: 1px solid #ccc;
+    }
+
+section {
+    padding: 10px;
+}
+
+.form {
+    padding: 10px;
+    border: 1px solid #333;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 4px;
+}
+
+    .form-group label {
+        width: 100%;
+        padding: 0;
+        margin: 2px;
+    }
+
+    .form-group *:last-child {
+        width: 100%;
+        border: 2px solid transparent;
+        font-size: 16px;
+        line-height: 10px;
+        padding: 10px 0;
+        border-radius: 3px;
+        background: #ecf0f1;
+        font-weight: 200;
+        transition: border .5s;
+        margin: 4px;
+    }
+
+.buttons {
+    text-align: center;
+}
+
+    .buttons button, .buttons a {
+        border: 2px solid transparent;
+        font-size: 16px;
+        line-height: 10px;
+        padding: 10px 0;
+        border-radius: 3px;
+        background: #3498db;
+        width: 200px;
+        color: white;
+        margin: 10px 0;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+    }

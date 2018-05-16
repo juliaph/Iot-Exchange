@@ -1,0 +1,20 @@
+.dashboard-item {
+    background: #888;
+    padding: 40px 10px;
+    margin: 20px;
+    width: 700px;
+    display: flex;
+}
+
+.dashboard-item .dashboard-item-icon {
+    width: 10%;
+}
+
+.dashboard-item .dashboard-item-description a {
+    text-decoration: none;
+    color: white;
+}
+
+    .dashboard-item .dashboard-item-description a p, .dashboard-item .dashboard-item-description a h3 {
+        margin: 4px;
+    }

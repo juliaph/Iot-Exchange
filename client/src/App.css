@@ -2,6 +2,12 @@
     box-sizing: content-box;
 }
 
+html, body {
+    font-family: 'Lato';
+    height: auto;
+    min-height: auto;
+ }
+
 h1, h2 {
     text-align: center;
 }
@@ -75,6 +81,7 @@ section {
     padding: 10px;
 }
 
+
 .form {
     padding: 10px;
     border: 1px solid #333;
@@ -124,3 +131,15 @@ section {
         display: inline-block;
         cursor: pointer;
     }
+
+
+section {
+    padding: 0;
+}
+section p {
+    text-align: center; 
+    font-size: 10px;
+}
+
+
+

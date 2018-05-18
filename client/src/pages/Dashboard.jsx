@@ -13,11 +13,11 @@ class Dashboard extends Component {
     render() {
         const manage = this.props.type === 'vendor' ? {
             to: '/manage-vendor',
-            text: 'Manage',
+            text: 'Manage Profile',
             description: "Manage your organization's products or services."
         } : this.props.type === 'partner' ? {
             to: '/manage-partner',
-            text: 'Manage',
+            text: 'Manage Profile',
             description: "Manage your organization's capabilities."
         } : null;
         return (
@@ -26,7 +26,7 @@ class Dashboard extends Component {
 
                 <DashboardLink icon={matchIcon}
                     to="/find-partner"
-                    text="Find a partner"
+                    text="Find a Partner"
                     description="Discover partners that can help you achieve your IoT solution."
                 />
                 <DashboardLink icon={searchIcon}

@@ -33,6 +33,8 @@ class FindVendor extends Component {
         return (
             <div id="find-vendor" className="content">
                 <h1>Find a Vendor</h1>
+                <h3>Please select the products or services your organization requires in
+                    order to complete an IoT solution.</h3>
                 <CapabilityStack stack={this.state.stack} onChange={this.handleInputChange} />
                 <div className="buttons">
                     <Link to={searchLink}>Find Vendors</Link>

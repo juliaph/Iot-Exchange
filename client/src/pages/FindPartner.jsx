@@ -32,6 +32,8 @@ class FindPartner extends Component {
         return (
             <div id="find-partner" className="content">
                 <h1>Find a Partner</h1>
+                <h3>Please select the capabilities your organization requires assistance with in
+                    order to complete an IoT solution.</h3>
                 <CapabilityStack stack={this.state.stack} onChange={this.handleInputChange} />
                 <div className="buttons">
                     <Link to={searchLink}>Find Partners</Link>

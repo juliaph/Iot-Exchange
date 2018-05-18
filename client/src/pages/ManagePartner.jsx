@@ -45,6 +45,13 @@ class ManagePartner extends Component {
                         message: error
                     }
                 });
+            } else {
+                this.setState({
+                    message: {
+                        title: 'Complete',
+                        message: 'Stacks saved.'
+                    }
+                });
             }
         });
         event.preventDefault();

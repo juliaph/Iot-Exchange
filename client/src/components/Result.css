@@ -13,6 +13,15 @@
     margin: 20px;
 }
 
+    .result .result-stack {
+        background-color: white;
+        display: inline-block;
+        padding: 4px;
+        margin: 4px;
+        border-radius: 4px;
+    }
+
+
     .result .result-title {
         text-align: center;
         margin: 4px;

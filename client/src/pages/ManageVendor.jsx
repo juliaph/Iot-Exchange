@@ -52,6 +52,12 @@ class ManageVendor extends Component {
                     }
                 });
             } else {
+                this.setState({
+                    message: {
+                        title: 'Complete',
+                        message: 'Offering created.'
+                    }
+                });
                 this.refresh();
             }
 
@@ -113,6 +119,7 @@ class ManageVendor extends Component {
                                     <th>Stack</th>
                                     <th>Type</th>
                                     <th>Name</th>
+                                    <th>Website</th>
                                     <th></th>
                                 </tr>
                             </thead>

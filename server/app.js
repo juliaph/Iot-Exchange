@@ -1,4 +1,5 @@
 "use strict";
+require('./config/config');
 
 const debug = require("debug");
 const express = require("express");
@@ -34,7 +35,7 @@ app.post('/api/search/:type', routes.search.post);
 
 app.get('/api/capability', routes.capability.get);
 
-app.set('port', process.env.PORT || 1338);
+app.set('port', CONFIG.port || 1337);
 var server = app.listen(app.get('port'), function () {
     debug('Express server listening on port ' + server.address().port);
 });

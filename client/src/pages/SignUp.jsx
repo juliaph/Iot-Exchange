@@ -10,13 +10,13 @@ class SignUp extends Component {
         super(props);
 
         this.state = {
-            firstName: '',
-            lastName: '',
             email: '',
             password: '',
             confirmPassword: '',
-            companyName: '',
-            companyType: '',
+            type: '',
+            profile_firstName: '',
+            profile_lastName: '',
+            profile_companyName: '',
             message: null
         }
 
@@ -53,19 +53,19 @@ class SignUp extends Component {
                     </div>
                     <input
                         type="text"
-                        name="firstName"
+                        name="profile_firstName"
                         placeholder="First Name"
                         onChange={this.onChange}
-                        value={this.state.firstName}
+                        value={this.state.profile_firstName}
                         required
                     />
 
                     <input
                         type="text"
-                        name="lastName"
+                        name="profile_lastName"
                         placeholder="Last Name"
                         onChange={this.onChange}
-                        value={this.state.lastName}
+                        value={this.state.profile_lastName}
                         required
                     />
 
@@ -96,18 +96,18 @@ class SignUp extends Component {
 
                     <input
                         type="text"
-                        name="companyName"
+                        name="profile_companyName"
                         placeholder="Company Name"
                         onChange={this.onChange}
-                        value={this.state.companyName}
+                        value={this.state.profile_companyName}
                         required
                     />
 
                     <select
-                        name="companyType"
+                        name="type"
                         placeholder="Company Type"
                         onChange={this.onChange}
-                        value={this.state.companyType}
+                        value={this.state.type}
                         required
                     >
                         <option value="" hidden defaultValue>Company Type</option>

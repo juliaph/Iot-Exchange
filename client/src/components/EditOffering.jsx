@@ -37,6 +37,16 @@ class EditOffering extends Component {
                     />
                 </div>
 
+                <div className="form-group">
+                    <input type="text"
+                        name="offeringUrl"
+                        value={this.props.offeringUrl}
+                        onChange={this.props.onChange}
+                        placeholder="Website"
+                        required
+                    />
+                </div>
+                
             </div>
         );
     }

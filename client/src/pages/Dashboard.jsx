@@ -2,8 +2,27 @@
 import DashboardLink from "../components/DashboardLink";
 import './Dashboard.css';
 import matchIcon from '../match.png';
+import api from '../api';
 
 class Dashboard extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            complete: false
+        };
+
+        api.stack((error, response) => {
+            if (error) {
+
+            } else {
+                this.setState({
+                    complete: (response && response.length > 0) ? true : false
+                });
+            }
+        });
+    }
+
     render() {
         const manage = this.props.type === 'vendor' ? {
             to: '/manage-vendor',

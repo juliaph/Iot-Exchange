@@ -11,7 +11,8 @@ exports.post = [
                 response.json(users.map((user) => {
                     var view = {
                         id: user.id,
-                        email: user.name
+                        email: user.name,
+                        stacks: user.stacks
                     };
                     var data = JSON.parse(user.data);
                     for (var prop in data)

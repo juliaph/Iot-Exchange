@@ -5,7 +5,7 @@ import './DashboardLink.css';
 class DashboardLink extends Component {
     render() {
         return (
-            <div className="dashboard-item">
+            <div className={this.props.active ? 'dashboard-item active' : 'dashboard-item'}>
                 <div className="dashboard-item-icon">
                 </div>
                 <div className="dashboard-item-description">

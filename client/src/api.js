@@ -1,7 +1,8 @@
 ﻿import $ from 'jquery';
 
 export default {
-    endpoint: 'http://localhost:1338',
+    // endpoint: '', // production
+    endpoint: 'http://localhost:1337', // development
     tokenKey: 'bearer:token',
     getToken() {
         return sessionStorage.getItem(this.tokenKey);

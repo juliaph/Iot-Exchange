@@ -1,0 +1,34 @@
+﻿.cstacklist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+    .cstacklist .cstack {
+        width: 280px;
+        margin: 4px;
+    }
+
+        .cstacklist .cstack .cstack-name {
+            background: red;
+            color: white;
+            font-size: 1em;
+            padding: 10px 26px;
+            margin: 0;
+        }
+
+        .cstacklist .cstack ul {
+            list-style: none;
+            padding-left: 20px;
+            margin: 0;
+        }
+
+            .cstacklist .cstack ul li {
+                font-size: .7em;
+                font-weight: bold;
+                margin: 4px 0;
+            }
+
+                .cstacklist .cstack ul li input {
+                    margin-left: -20px;
+                }

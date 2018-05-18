@@ -1,0 +1,25 @@
+﻿#manage {
+    width: 100%;
+    max-width: 1280px;
+}
+
+    #manage .row {
+        display: flex;
+        flex-direction: row;
+    }
+
+        #manage .row .view {
+            width: 100%;
+        }
+
+        #manage .row .view table {
+            width: 100%;
+        }
+
+            #manage .row .view table th {
+                text-align: left;
+            }
+
+        #manage .row .sidebar {
+            width: 40%;
+        }

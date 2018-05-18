@@ -1,0 +1,49 @@
+﻿.results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.result {
+    background-color: #999;
+    width: 800px;
+    max-width: 100%;
+    padding: 4px;
+    margin: 20px;
+}
+
+    .result .result-stack {
+        background-color: white;
+        display: inline-block;
+        padding: 4px;
+        margin: 4px;
+        border-radius: 4px;
+    }
+
+    .result .result-title {
+        text-align: center;
+        margin: 4px;
+        margin-bottom: 0;
+        padding: 4px;
+        border-bottom: 1px solid black;
+    }
+
+    .result .result-content {
+        display: flex;
+    }
+
+        .result .result-content h4, .result .result-content dl {
+            margin: 4px;
+        }
+
+        .result .result-content .result-description {
+            flex: auto;
+            padding: 4px;
+        }
+
+        .result .result-content .result-info {
+            border-left: 1px solid black;
+            width: 33%;
+            padding: 4px;
+        }

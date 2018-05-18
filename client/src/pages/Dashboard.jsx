@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import DashboardLink from "../components/DashboardLink";
 import './Dashboard.css';
+import matchIcon from '../match.png';
 
 class Dashboard extends Component {
     render() {
@@ -15,10 +16,11 @@ class Dashboard extends Component {
         } : null;
         return (
             <div id="dashboard" className="content">
-                <DashboardLink to="/find-partner"
+                
+                <button><DashboardLink to="/find-partner"
                     text="Find a partner"
                     description="Discover partners that can help you achieve your IoT solution."
-                />
+                /></button>
                 <DashboardLink to="/find-vendor"
                     text="Find a Vendor"
                     description="Discover vendors that can provide the right products for your IoT solution."

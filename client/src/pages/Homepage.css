@@ -20,14 +20,17 @@
  }
  
  #banner_content {
-    margin-left: 32%;
-    margin-top: 4%;
-
+    margin-left: 0%;
+    margin-top: 5%;
  }
 
  #banner_content h1 {
-     text-align: left;
+     text-align: center;
  }
+
+ #banner_content h2 {
+    text-align: center;
+}
 
  #hr {
     display: block;
@@ -41,9 +44,12 @@
  
  #content_info {
     padding:20px;
-    height:450px;
+    height:auto;
     color:black;
     background:white;
  }
 
+ #content_info h1 {
+     text-align: left;
+ }
  

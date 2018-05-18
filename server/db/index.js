@@ -100,7 +100,7 @@ function getUserById(id, done) {
         (err, rows, fields) => {
             if (err)
                 done('Unspecified error fetching user.');
-            else if (rows.length > 0)
+            else if (rows.length > 0) 
                 done(null, rows[0]);
             else
                 done('User was not found.');

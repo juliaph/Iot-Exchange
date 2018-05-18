@@ -1,7 +1,7 @@
 ﻿import $ from 'jquery';
 
 export default {
-    // endpoint: '', // production
+    // endpoint: '', // production (fix later when deployed)
     endpoint: 'http://localhost:1337', // development
     tokenKey: 'bearer:token',
     getToken() {
@@ -34,11 +34,13 @@ export default {
             done(null, response);
         }).fail((xhr) => {
             sessionStorage.removeItem(this.tokenKey);
-            if (xhr.responseJSON) {
-                done(xhr.responseJSON);
-            } else {
-                done('User not found or password was incorrect.');
-            }
+            done('User not found or password was incorrect.');
+            // if (xhr.responseJSON) {
+            //     console.log(xhr.responseJSON);
+            //     done(xhr.responseJSON);
+            // } else {
+            //     done('User not found or password was incorrect.');
+            // }
         });
     },
     isAuthenticated() {
@@ -68,6 +70,7 @@ export default {
             },
             dataType: 'json'
         }).done((response) => {
+            console.log(response);
             done(null, response);
         }).fail((xhr) => {
             if (xhr.responseJSON) {

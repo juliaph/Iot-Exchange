@@ -22,7 +22,8 @@ exports.profileInfo = [
                 response.status(400).json(err);
             else {
                 var view = {
-                    email: user.name
+                    email: user.name,
+                    companyType: user.type
                 };
                 var profile = JSON.parse(user.data);
                 for (var prop in profile) {

@@ -5,16 +5,26 @@ import './DashboardLink.css';
 class DashboardLink extends Component {
     render() {
         return (
-            <div className={this.props.active ? 'dashboard-item active' : 'dashboard-item'}>
-                <div className="dashboard-item-icon">
-                </div>
-                <div className="dashboard-item-description">
-                    <Link to={this.props.to}>
-                        <h3>{this.props.text}</h3>
-                        <p>{this.props.description}</p>
-                    </Link>
-                </div>
-            </div>
+            <Link to={this.props.to}>
+                <button className="dashboard-item">
+                    
+                    <div className="dashboard-item-icon">
+                        <img src={this.props.icon} alt=""/>
+                    </div>
+
+                    <div className="dashboard-item-text">
+                        <div className="dashboard-item-label">
+                            {this.props.text}
+                        </div>
+                        
+                        <div className="dashboard-item-description">
+                            {this.props.description}
+                        </div>
+
+                    </div>
+                   
+                </button>
+            </Link>
         );
     }
 }

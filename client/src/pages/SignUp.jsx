@@ -10,13 +10,16 @@ class SignUp extends Component {
         super(props);
 
         this.state = {
-            firstName: '',
-            lastName: '',
             email: '',
             password: '',
             confirmPassword: '',
-            companyName: '',
-            companyType: '',
+            profile_companyName: '',
+            type: '',
+            phone_number: '',
+            street_address: '',
+            city: '',
+            state: '',
+            zipcode: '',
             message: null
         }
 
@@ -51,23 +54,6 @@ class SignUp extends Component {
                         <h3>Create An Account Now</h3>
                         <hr />
                     </div>
-                    <input
-                        type="text"
-                        name="firstName"
-                        placeholder="First Name"
-                        onChange={this.onChange}
-                        value={this.state.firstName}
-                        required
-                    />
-
-                    <input
-                        type="text"
-                        name="lastName"
-                        placeholder="Last Name"
-                        onChange={this.onChange}
-                        value={this.state.lastName}
-                        required
-                    />
 
                     <input
                         type="email"
@@ -96,18 +82,63 @@ class SignUp extends Component {
 
                     <input
                         type="text"
-                        name="companyName"
+                        name="profile_companyName"
                         placeholder="Company Name"
                         onChange={this.onChange}
-                        value={this.state.companyName}
+                        value={this.state.profile_companyName}
+                        required
+                    />
+
+                    <input
+                        type="phone"
+                        name="phone_number"
+                        placeholder="Phone Number"
+                        onChange={this.onChange}
+                        //value={this.state.phone_number}
+                        required
+                    />
+
+                    <input
+                        type="address"
+                        name="street_address"
+                        placeholder="Street Address"
+                        onChange={this.onChange}
+                        //value={this.state.street_address}
+                        required
+                    />
+
+                    <input
+                        type="city"
+                        name="city"
+                        placeholder="City"
+                        onChange={this.onChange}
+                        //value={this.state.city}
+                        required
+                    />
+
+                    <input
+                        type="state"
+                        name="state"
+                        placeholder="State"
+                        onChange={this.onChange}
+                        //value={this.state.state}
+                        required
+                    />
+
+                    <input
+                        type="zipcode"
+                        name="zipcode"
+                        placeholder="Zip Code"
+                        onChange={this.onChange}
+                        //value={this.state.zipcode}
                         required
                     />
 
                     <select
-                        name="companyType"
+                        name="type"
                         placeholder="Company Type"
                         onChange={this.onChange}
-                        value={this.state.companyType}
+                        value={this.state.type}
                         required
                     >
                         <option value="" hidden defaultValue>Company Type</option>

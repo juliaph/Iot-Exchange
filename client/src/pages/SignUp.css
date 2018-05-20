@@ -31,17 +31,27 @@
     #signup input[type="text"],
     #signup input[type="password"],
     #signup input[type="email"],
-    #signup select {
-        border: 2px solid transparent;
+    #signup input[type="phone"],
+    #signup input[type="address"],
+    #signup input[type="city"],
+    #signup input[type="state"],
+    #signup input[type="zipcode"] {
+        border: 2px solid #CACBCA;
         font-size: 16px;
         line-height: 10px;
         padding: 10px 0;
         border-radius: 3px;
+        width: 350px;
     }
 
     #signup input[type="text"],
     #signup input[type="password"],
-    #signup input[type="email"] {
+    #signup input[type="email"],
+    #signup input[type="phone"],
+    #signup input[type="address"],
+    #signup input[type="city"],
+    #signup input[type="state"],
+    #signup input[type="zipcode"], {
         width: 70%;
         text-align: center;
         background: #ecf0f1;
@@ -50,7 +60,17 @@
         margin: 4px;
     }
 
-    #signup select option {
+    #signup select {
+        
+        border: 2px solid #CACBCA;
+        font-size: 16px;
+        line-height: 10px;
+        padding: 10px 0;
+        border-radius: 3px;
+    }
+
+    #signup select option,
+    #signup input {
         text-align: center;
     }
 

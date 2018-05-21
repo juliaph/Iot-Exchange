@@ -13,10 +13,13 @@ class SignUp extends Component {
             email: '',
             password: '',
             confirmPassword: '',
+            companyName: '',
             type: '',
-            profile_firstName: '',
-            profile_lastName: '',
-            profile_companyName: '',
+            phoneNumber: '',
+            streetAddress: '',
+            city: '',
+            state: '',
+            zip: '',
             message: null
         }
 
@@ -51,23 +54,6 @@ class SignUp extends Component {
                         <h3>Create An Account Now</h3>
                         <hr />
                     </div>
-                    <input
-                        type="text"
-                        name="profile_firstName"
-                        placeholder="First Name"
-                        onChange={this.onChange}
-                        value={this.state.profile_firstName}
-                        required
-                    />
-
-                    <input
-                        type="text"
-                        name="profile_lastName"
-                        placeholder="Last Name"
-                        onChange={this.onChange}
-                        value={this.state.profile_lastName}
-                        required
-                    />
 
                     <input
                         type="email"
@@ -96,10 +82,55 @@ class SignUp extends Component {
 
                     <input
                         type="text"
-                        name="profile_companyName"
+                        name="companyName"
                         placeholder="Company Name"
                         onChange={this.onChange}
-                        value={this.state.profile_companyName}
+                        value={this.state.companyName}
+                        required
+                    />
+
+                    <input
+                        type="text"
+                        name="phoneNumber"
+                        placeholder="Phone Number"
+                        onChange={this.onChange}
+                        //value={this.state.phone_number}
+                        required
+                    />
+
+                    <input
+                        type="text"
+                        name="streetAddress"
+                        placeholder="Street Address"
+                        onChange={this.onChange}
+                        //value={this.state.street_address}
+                        required
+                    />
+
+                    <input
+                        type="text"
+                        name="city"
+                        placeholder="City"
+                        onChange={this.onChange}
+                        //value={this.state.city}
+                        required
+                    />
+
+                    <input
+                        type="text"
+                        name="state"
+                        placeholder="State"
+                        onChange={this.onChange}
+                        //value={this.state.state}
+                        required
+                    />
+
+                    <input
+                        type="text"
+                        name="zip"
+                        placeholder="Zip Code"
+                        onChange={this.onChange}
+                        //value={this.state.zipcode}
                         required
                     />
 

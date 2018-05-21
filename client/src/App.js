@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, BrowserRouter as Router, Redirect, Link, NavLink } from 'react-router-dom';
+import { Route, Switch, HashRouter as Router, Redirect, Link, NavLink } from 'react-router-dom';
 import api from './api';
 import './App.css';
 import Logo from './TCClogo.png';

@@ -45,7 +45,7 @@ function grantUser(user, password, done) {
     connection.query('INSERT INTO `accesstokens` (`token`, `user_id`)'
         + ' SELECT ' + t + ', `id`'
         + ' FROM `users`'
-        + ' WHERE `name` = ' + u + ' AND `password` = ' + p + ';',
+        + ' WHERE `email` = ' + u + ' AND `password` = ' + p + ';',
         (err, rows, fields) => {
             if (err)
                 done(error.UNSPECIFIED);
@@ -111,15 +111,21 @@ exports.getUserById = getUserById;
 
 function register(model, done) {
     var connection = db.createConnection();
-    var name = connection.escape(model.email);
+    console.log(model);
+    var email = connection.escape(model.email);
     var password = connection.escape(model.password);
+    var companyName = connection.escape(model.companyName);
     var type = connection.escape(model.type);
-    var data = connection.escape(JSON.stringify(getProfile(model)), true);
+    var phone = connection.escape(model.phoneNumber);
+    var street = connection.escape(model.streetAddress);
+    var city = connection.escape(model.city);
+    var state = connection.escape(model.state);
+    var zip = connection.escape(model.zip);
     if (model.password !== model.confirmPassword) {
         done('Passwords did not match.');
     } else {
-        connection.query('INSERT INTO `users` (`name`, `password`, `type`, `data`)'
-            + ' VALUES (' + name + ', ' + password + ', ' + type + ', ' + data + ');',
+        connection.query('INSERT INTO `users` (`email`, `password`, `companyName`, `type`, `phone`, `street`, `city`, `state`, `zip`)'
+            + ' VALUES (' + email + ', ' + password + ', ' + companyName + ', ' +  type + ', ' + phone +  ', ' + street + ', ' + city + ', ' + state + ', ' + zip + ');',
             (err, rows, fields) => {
                 if (err) {
                     console.log(err);

@@ -7,5 +7,7 @@ module.exports = {
     capability: require('./capability'),
     search: require('./search'),
     stacks: require('./stacks'),
-    offering: require('./offering')
+    offering: require('./offering'),
+    profile: require('./profile'),
+    favorites: require('./favorite'),
 };

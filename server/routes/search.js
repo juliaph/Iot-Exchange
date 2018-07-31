@@ -11,12 +11,13 @@ exports.post = [
                 response.json(users.map((user) => {
                     var view = {
                         id: user.id,
-                        email: user.name,
-                        stacks: user.stacks
+                        email: user.email,
+                        stacks: user.stacks,
+                        companyName: user.companyName
                     };
-                    var data = JSON.parse(user.data);
-                    for (var prop in data)
-                        view[prop] = data[prop];
+                    // var data = JSON.parse(user.data);
+                    // for (var prop in data)
+                    //     view[prop] = data[prop];
                     return view;
                 }));
         });

@@ -35,6 +35,18 @@ app.post('/api/search/:type', routes.search.post);
 
 app.get('/api/capability', routes.capability.get);
 
+app.get('/api/profile/:id', routes.profile.get);
+
+app.get('/api/favorites', routes.favorites.get);
+app.post('/api/favorites/:company_id', routes.favorites.post);
+app.delete('/api/favorites/:id', routes.favorites.delete);
+//TODO
+app.put('/api/favorites/:company_id', routes.favorites.put);
+//TODO
+app.get('/api/favorites/partners', routes.favorites.getPartners);
+//TODO
+app.get('/api/favorites/vendors', routes.favorites.getVendors);
+
 app.set('port', CONFIG.port || 1337);
 var server = app.listen(app.get('port'), function () {
     debug('Express server listening on port ' + server.address().port);

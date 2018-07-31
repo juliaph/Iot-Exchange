@@ -1,5 +1,7 @@
 ﻿import React, { Component } from 'react';
 import './Result.css';
+import { Link } from "react-router-dom";
+
 
 class PartnerResult extends Component {
     render() {
@@ -8,9 +10,10 @@ class PartnerResult extends Component {
                 {stack}
             </span>);
         });
+        const profileLink = `../../profile/` + this.props.id;
         return (
             <div className="result">
-                <h3 className="result-title">{this.props.profile_companyName}</h3>
+                <h3 className="result-title"><Link to= {profileLink}>{this.props.companyName}</Link></h3>
                 <div className="result-content">
                     <div className="result-description">
                         <h4>Description</h4>
@@ -20,8 +23,6 @@ class PartnerResult extends Component {
                     </div>
                     <div className="result-info">
                         <dl>
-                            <dt>Contact</dt>
-                            <dd>{this.props.profile_firstName} {this.props.profile_lastName}</dd>
                             <dt>Email</dt>
                             <dd>{this.props.email}</dd>
                         </dl>

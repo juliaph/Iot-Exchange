@@ -81,7 +81,7 @@ function getUserByToken(token, done) {
             + ' ON `u`.`id` = `t`.`user_id`'
         + ' WHERE `t`.`token` = ' + t + ';',
         (err, rows, fields) => {
-            if (err)
+            if (err) 
                 done('Unspecified error fetching user by token.', null);
             else if (rows.length > 0)
                 done(null, rows[0]);    
@@ -111,7 +111,6 @@ exports.getUserById = getUserById;
 
 function register(model, done) {
     var connection = db.createConnection();
-    console.log(model);
     var email = connection.escape(model.email);
     var password = connection.escape(model.password);
     var companyName = connection.escape(model.companyName);
@@ -145,7 +144,7 @@ exports.register = register;
 
 function capability(done) {
     var connection = db.createConnection();
-    connection.query('SELECT c.id as c_id, c.name as c_name, s.id as s_id, s.name as s_name'
+    connection.query('SELECT c.id as c_id, c.name as c_name, s.id as s_id, s.name as s_name, s.description as s_description'
         + ' FROM capabilities AS c'
         + ' JOIN stacks AS s'
         + ' ON c.id = s.capability_id',
@@ -164,7 +163,8 @@ function capability(done) {
                     var capability = capabilities[stack.c_id];
                     capability.stacks.push({
                         id: stack.s_id,
-                        name: stack.s_name
+                        name: stack.s_name,
+                        description: stack.s_description,
                     });
                 }
                 var result = [];
@@ -313,10 +313,140 @@ function search(type, stacks, done) {
                 for(var item in data) {
                     arr.push(data[item]);
                 }
-                console.log(arr);
                 done(null, arr);
             }
         });
     connection.end();
 }
 exports.search = search;
+
+function getFavorites(id, done) {
+    var connection = db.createConnection();
+    var user_id = connection.escape(id.user_id);
+    connection.query('SELECT * FROM `favorites` WHERE `user_id` = ' + user_id + ";",
+        (err, rows, fields) => {
+            if (err) {
+                done('Unspecified error fetching user favorites.');
+            } else {
+                done(null, rows);
+            }
+        })
+    connection.end();
+}
+exports.getFavorites = getFavorites;
+
+function addFavorite(favorite, done) {
+    var connection = db.createConnection();
+    var user_id = connection.escape(favorite.user_id);
+    var company_id = connection.escape(favorite.company_id);
+
+    connection.query('INSERT INTO `favorites` (`user_id`, `company_id`)'
+        + ' VALUES (' + user_id + ', ' + company_id + ');',
+        (err, rows, fields) => {
+            if (err) {
+                if (err.code === 'ER_DUP_ENTRY') {
+                    done('User already has favorited this company.');
+                } else
+                    done('Unspecified error adding favorite.');
+            } else {
+                done(null, rows);
+            }
+        });
+    connection.end();
+}
+exports.addFavorite = addFavorite;
+
+function removeFavorite(key, done) {
+    var connection = db.createConnection();
+    var user_id = connection.escape(key.user_id);
+    var company_id = connection.escape(key.company_id);
+    connection.query('DELETE FROM `favorites`'
+        + ' WHERE `user_id` = ' + user_id + ' AND `company_id` = ' + company_id + ';',
+        (err, rows, fields) => {
+            if (err) {
+                done('Unspecified error deleting user favorite.');
+            } else {
+                done(null, rows);
+            }
+        });
+    connection.end();
+}
+exports.removeFavorite = removeFavorite;
+
+//TODO
+function updateFavorite(update, key, done) {
+    var connection = db.createConnection();
+
+    connection.query('' + ";",
+        (err, rows, fields) => {
+            if(err) {
+                done('Unspecified error updating favorite.');
+            } else {
+                done(null, rows);
+            }
+        });
+    connection.end();
+}
+exports.updateFavorite = updateFavorite;
+
+//TODO
+function getFavoritePartners(id, done) {
+    var connection = db.createConnection();
+    var user_id = connection.escape(id.user_id);
+    connection.query('SELECT * FROM `favorites` WHERE `user_id` = ' + user_id + ";",
+        (err, rows, fields) => {
+            if (err) {
+                done('Unspecified error fetching user favorites.');
+            } else {
+                done(null, rows);
+            }
+        })
+    connection.end();
+}
+exports.getFavoritePartners = getFavoritePartners;
+
+//TODO
+function getFavoriteVendors(id, done) {
+    var connection = db.createConnection();
+    var user_id = connection.escape(id.user_id);
+    connection.query('SELECT * FROM `favorites` WHERE `user_id` = ' + user_id + ";",
+        (err, rows, fields) => {
+            if (err) {
+                done('Unspecified error fetching user favorites.');
+            } else {
+                done(null, rows);
+            }
+        })
+    connection.end();
+}
+exports.getFavoriteVendors = getFavoriteVendors;
+
+function getProfilePage(id, done) {
+    var connection = db.createConnection();
+    var profile_id = connection.escape(id);
+    
+    connection.query('SELECT `u`.*, NULL AS `password`, `s`.`name` AS `stack_name`' + 
+        'FROM userstacks AS `us` JOIN stacks AS `s`ON `us`.`stack_id` = `s`.`id`' +
+        'JOIN users as `u` ON `u`.`id` = `us`.`user_id`' + 
+        'WHERE `us`.`user_id` = ' + profile_id,
+        (err, rows, fields) => {
+            if (err) {
+                console.log(err);
+                done('Unspecified error fetching profile.');
+            } else {
+                var profile = {
+                    stacks: [],
+                };
+                for(var row of rows) {
+                    for(var prop in row) {
+                        if(prop != 'stack_name')
+                            profile[prop] = row[prop];
+                    }
+                    profile.stacks.push(row.stack_name);
+                }
+                done(null, profile);
+            }
+    });
+    connection.end();
+}
+exports.getProfilePage = getProfilePage;

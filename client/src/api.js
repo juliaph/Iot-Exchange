@@ -1,7 +1,7 @@
 ﻿import $ from 'jquery';
 
 export default {
-    // endpoint: '', // production (fix later when deployed)
+    // endpoint: 'http://13.57.7.240:1337', // production (fix later when deployed)
     endpoint: 'http://localhost:1337', // development
     tokenKey: 'bearer:token',
     getToken() {
@@ -190,6 +190,24 @@ export default {
             } else {
                 done('Unable to get capabilities.');
             }
+        });
+    },
+    profile_page(id, done) {
+        $.ajax({
+            url: this.endpoint + '/api/profile/' + id,
+            method: 'GET', 
+            headers: {
+                'Authorization': 'Bearer ' + this.getToken()
+            },
+            dataType: 'json'
+        }).done((response) => {
+            done(null, response);
+        }).fail((xhr) => {
+            if(xhr.responseJSON) {
+                done(xhr.responseJSON);
+            } else {
+                done('Unable to load profile');
+            };
         });
     }
 };

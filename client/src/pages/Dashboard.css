@@ -5,3 +5,74 @@
     align-items: center;
     justify-content: center;
 }
+
+.row {
+	width: 100%;
+}
+
+.col-4 {
+	width: 20%;
+	height: 450px;
+	margin-right: 20px;
+	display: inline-block;
+	border: 2px solid #ED1C24;
+	box-shadow: 3px 3px 5px #999999;
+	border-radius: 10px;
+}
+
+ .dashboard-button {
+    border: 2px solid transparent;
+    font-size: 16px;
+    line-height: 10px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    background: #ED1C24;
+    color: #ffffff;
+    box-shadow: 3px 3px 5px #999999;
+    margin: 10px 10px 0px 10px;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+}
+
+ .what-iot-offers-header {
+    padding-top: 30px;
+    padding-bottom: 30px;
+ }
+
+  .col-3 {
+
+    width: 31%;
+    margin-left: 15px;
+    margin-right: 15px;
+    text-align: center;
+    display: inline-block;
+ }
+
+ .dashboard-header{
+ 	padding-bottom: 30px;
+ }
+
+  .spacer {
+
+    margin-top: 75px;
+    margin-bottom: 75px;
+ }
+
+ .body-text-padding {
+ 	padding-left: 15px;
+ 	padding-right: 15px;
+ }
+
+ .line-spacer {
+    height: 2px;
+    background-color: #000000;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 30px;
+ }
+
+ .image-margin-top {
+    margin-top: 20px;
+ }

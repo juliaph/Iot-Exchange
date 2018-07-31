@@ -51,7 +51,7 @@ class SignUp extends Component {
             <div id="signup" className="content">
                 <form onSubmit={this.onSubmit}>
                     <div className="title">
-                        <h3>Create An Account Now</h3>
+                        <h3>Create An Account</h3>
                         <hr />
                     </div>
 

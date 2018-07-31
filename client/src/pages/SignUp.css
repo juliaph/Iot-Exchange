@@ -12,7 +12,6 @@
         background-color: white;
         line-height: 1.65;
         padding: 20px 50px;
-        border: 2px solid #CACBCA;
         color: black;
         display: flex;
         flex-direction: column;
@@ -42,6 +41,7 @@
         padding: 10px 0;
         border-radius: 3px;
         width: 350px;
+        margin-top: 20px;
     }
 
     #signup input[type="text"],
@@ -63,10 +63,11 @@
     #signup select {
         
         border: 2px solid #CACBCA;
-        font-size: 16px;
+        font-size: 18px;
         line-height: 10px;
         padding: 10px 0;
         border-radius: 3px;
+        margin-top: 20px;
     }
 
     #signup select option,

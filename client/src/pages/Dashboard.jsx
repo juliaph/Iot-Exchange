@@ -1,10 +1,10 @@
 ﻿import React, { Component } from 'react';
 import DashboardLink from "../components/DashboardLink";
 import './Dashboard.css';
-import matchIcon from '../icons/match.png';
-import searchIcon from '../icons/search.png';
-import updateIcon from '../icons/update.png';
-import historyIcon from '../icons/history.png';
+import findpartnericon from '../images/partner-icon.png';
+import findvendoricon from '../images/find-vendor-icon.png';
+import matchhistoryicon from '../images/view-history-icon.png';
+import manageprofileicon from '../images/manage-profile-icon.png';
 
 import api from '../api';
 
@@ -41,25 +41,48 @@ class Dashboard extends Component {
         } : null;
         return (
             <div id="dashboard" className="content">
-                <h1>Welcome to your IoT Exchange Dashboard!</h1>
+                <h1 class="dashboard-header">Welcome to your IoT Exchange Dashboard!</h1>
 
-                <DashboardLink icon={matchIcon}
-                    to="/find-partner"
-                    text="Find a Partner"
-                    description="Discover partners that can help you achieve your IoT solution."
-                />
-                <DashboardLink icon={searchIcon}
-                    to="/find-vendor"
-                    text="Find a Vendor"
-                    description="Discover vendors that can provide the right products for your IoT solution."
-                />
-                <DashboardLink icon={updateIcon}
-                    {...manage} />
-                <DashboardLink icon={historyIcon}
-                    to="/match-history"
-                    text="Match History"
-                    description="Browse your previous match results."
-                />
+               <center> <div class="row">
+
+                <div class="col-4">
+                <img src={findpartnericon} class="image-margin-top" width="125" />
+                <hr class="line-spacer" width="50%" />
+<h3>Find a Partner</h3>
+<p class="body-text-padding">Discover partners that help you achieve your IoT solution</p>
+<div class="spacer"></div>
+<center><span><a class="dashboard-button" href="#/find-partner">Search for Partners</a></span></center>
+</div>
+
+<div class="col-4">
+<img src={findvendoricon} class="image-margin-top" width="125" />
+<hr class="line-spacer" width="50%" />
+<h3>Find a Vendor</h3>
+<p class="body-text-padding">Discover vendors that provide products for your IoT solution</p>
+<div class="spacer"></div>
+<center><span><a class="dashboard-button" href="#/find-vendor">Search for Vendors</a></span></center>
+</div>
+
+<div class="col-4">
+<img src={matchhistoryicon} class="image-margin-top" width="125" />
+<hr class="line-spacer" width="50%" />
+<h3>Match History</h3>
+<p class="body-text-padding">Browse your previous search history and match results</p>
+<div class="spacer"></div>
+<center><span><a class="dashboard-button" href="#/match-history">View History</a></span></center>
+</div>
+
+<div class="col-4">
+<img src={manageprofileicon} class="image-margin-top" width="125"/>
+<hr class="line-spacer" width="50%" />
+<h3>Manage Profile</h3>
+<p class="body-text-padding">Manage your organization’s capabilities</p>
+<div class="spacer"></div>
+<center><span><a class="dashboard-button" href="#/manage-partner">Go to Profile</a></span></center>
+</div>
+
+</div></center>
+
             </div>
         );
     }

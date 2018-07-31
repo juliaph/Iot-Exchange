@@ -150,7 +150,7 @@ class App extends Component {
                     </Switch>
                     <footer>
                         <section>
-                            <p>COPYRIGHTS © 2018 <a href="https://www.thechannelco.com/">THE CHANNEL COMPANY</a>.</p>
+                            <p>COPYRIGHT © 2018 <a href="https://www.thechannelco.com/">THE CHANNEL COMPANY</a>.</p>
                         </section>
                     </footer>
                 </div>

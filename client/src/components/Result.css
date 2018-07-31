@@ -6,7 +6,10 @@
 }
 
 .result {
-    background-color: #999;
+    background-color: #ffffff;
+    border: 1px solid;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px #999999;
     width: 800px;
     max-width: 100%;
     padding: 4px;
@@ -15,6 +18,7 @@
 
     .result .result-stack {
         background-color: white;
+        border: 1px solid;
         display: inline-block;
         padding: 4px;
         margin: 4px;

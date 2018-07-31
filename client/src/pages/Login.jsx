@@ -51,7 +51,7 @@ class Login extends Component {
             <div id="login" className="content">
                 <form onSubmit={this.handleSubmit}>
                     <div>
-                        <h3>Log In Now</h3>
+                        <h3>Log In</h3>
                         <hr />
                     </div>
                     <label>Email</label>

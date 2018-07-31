@@ -9,11 +9,21 @@
     width:100%;
     height:80px;
     background:white;
+    position: sticky;
+    top: 0;
+ }
+
+ .container > header {
+    position: sticky;
+    top: 0;
  }
  
  #banner {
-    background: #ED1C24;
-    height:250px;
+        background-image: url(../images/IoT-exchange-hero-background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #ED1C24;
+    height:350px;
     padding:20px;
     clear: both;
     color: white;
@@ -50,6 +60,99 @@
  }
 
  #content_info h1 {
-     text-align: left;
+     text-align: center;
+     color: #ED1C24;
  }
- 
+
+
+ .login-button  {
+    border: 2px solid transparent;
+    font-size: 18px;
+    width: 200px;
+    line-height: 10px;
+    padding: 20px 0;
+    border-radius: 5px;
+    background: #ffffff;
+    width: 200px;
+    color: #ED1C24;
+    margin: 20px 25px 0px 10px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+}
+
+ .signup-button {
+    border: 2px solid transparent;
+    width: 200px;
+    font-size: 18px;
+    line-height: 10px;
+    padding: 20px 0px;
+    border-radius: 5px;
+    background: #ffffff;
+    width: 200px;
+    color: #ED1C24;
+    margin: 20px 10px 0px 0px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+}
+
+ .contact-learn-more-button {
+    border: 2px solid transparent;
+    width: 300px;
+    font-size: 18px;
+    line-height: 10px;
+    padding: 20px 40px;
+    border-radius: 5px;
+    background: #ED1C24;
+    width: 200px;
+    color: #ffffff;
+    box-shadow: 3px 3px 5px #999999;
+    margin: 50px 10px 0px 10px;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.why-iot-text {
+    margin-bottom: 50px;
+ }
+
+ .row {
+    width: 100%;
+    padding-bottom: 30px;
+ }
+
+ .what-iot-offers {
+    background-color: #F8F8F8;
+ }
+
+ .col-3 {
+
+    width: 31%;
+    margin-left: 15px;
+    margin-right: 15px;
+    text-align: center;
+    display: inline-block;
+ }
+
+ .red-text {
+    color: #ED1C24;
+ }
+
+ .spacer {
+
+    margin-top: 75px;
+    margin-bottom: 50px;
+ }
+
+ .what-iot-offers-header {
+    padding-top: 30px;
+    padding-bottom: 30px;
+ }

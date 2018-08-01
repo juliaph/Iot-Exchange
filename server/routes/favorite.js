@@ -16,12 +16,27 @@ exports.get = [
         });
 }]
 
+exports.getIsFavorite = [
+    passport.authenticate('bearer', { session: false }),
+    (request, response) => {
+        db.getIsFavorite({
+            user_id: request.user.id,
+            company_id: request.params.company_id
+        }, (err, res) => {
+            if (err)
+                response.status(400).json(err);
+            else
+                response.json(res);
+        });
+}]
+
 exports.post = [
     passport.authenticate('bearer', { session: false }),
     (request, response) => {
         db.addFavorite({
             user_id: request.user.id,
             company_id: request.params.company_id,
+            type: request.body.type
         }, (err, res) => {
             if (err)
                 response.status(400).json(err);
@@ -62,7 +77,6 @@ exports.put = [
     }
 ]
 
-//TODO
 exports.getPartners = [
     passport.authenticate('bearer', { session: false }),
     (request, response) => {
@@ -76,7 +90,6 @@ exports.getPartners = [
         });
 }]
 
-//TODO 
 exports.getVendors = [
     passport.authenticate('bearer', { session: false }),
     (request, response) => {

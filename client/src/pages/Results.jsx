@@ -30,7 +30,7 @@ class Results extends Component {
     render() {
         const resultList = this.state.results.map((result) => {
             return (
-                <PartnerResult key={result.id} {...result} />
+                <PartnerResult type={this.props.match.params.type} key={result.id} {...result} />
             );
         });
         return (

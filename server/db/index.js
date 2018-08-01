@@ -270,8 +270,9 @@ function removeOffering(key, done) {
 }
 exports.removeOffering = removeOffering;
 
-function search(type, stacks, done) {
+function search(id, type, stacks, done) {
     var connection = db.createConnection();
+    var user_id = connection.escape(id);
     var t = connection.escape(type == 'partners' ? 'partner'
         : type == 'vendors' ? 'vendor' : null);
     var sarr = [];
@@ -282,7 +283,13 @@ function search(type, stacks, done) {
     else if (stacks) {
         sarr.push(parseInt(stacks));
     }
-    connection.query('SELECT `u`.*, `s`.`name` AS `stack_name` FROM `users` AS `u`'
+    connection.query('INSERT INTO `searchhistory` (`user_id`, `type`, `stacks`, `ref_stack_id`, `created_at`)'
+    + ' VALUES (' + user_id + ', "'  + type  + '", "' + sarr.join(',') + '",' + sarr[0] + ', NOW());',
+    (err, rows, fields) => {
+        if(err) {
+            console.log(err);
+        }
+        connection.query('SELECT `u`.*, `s`.`name` AS `stack_name` FROM `users` AS `u`'
         + ' JOIN'
             + ' (SELECT DISTINCT `user_id`'
                 + ' FROM `userstacks`'
@@ -314,9 +321,10 @@ function search(type, stacks, done) {
                     arr.push(data[item]);
                 }
                 done(null, arr);
+                connection.end();
             }
         });
-    connection.end();
+    })
 }
 exports.search = search;
 
@@ -339,9 +347,10 @@ function addFavorite(favorite, done) {
     var connection = db.createConnection();
     var user_id = connection.escape(favorite.user_id);
     var company_id = connection.escape(favorite.company_id);
+    var type = connection.escape(favorite.type);
 
-    connection.query('INSERT INTO `favorites` (`user_id`, `company_id`)'
-        + ' VALUES (' + user_id + ', ' + company_id + ');',
+    connection.query('INSERT INTO `favorites` (`user_id`, `company_id`, `type`, `created_at`)'
+        + ' VALUES (' + user_id + ', ' + company_id + ', ' + type + ', NOW());',
         (err, rows, fields) => {
             if (err) {
                 if (err.code === 'ER_DUP_ENTRY') {
@@ -389,14 +398,15 @@ function updateFavorite(update, key, done) {
 }
 exports.updateFavorite = updateFavorite;
 
-//TODO
 function getFavoritePartners(id, done) {
     var connection = db.createConnection();
     var user_id = connection.escape(id.user_id);
-    connection.query('SELECT * FROM `favorites` WHERE `user_id` = ' + user_id + ";",
+    connection.query('SELECT `favorites`.* , `users`.`companyName` ' +
+    'FROM `favorites` JOIN `users` ON `favorites`.`company_id` = `users`.`id` WHERE `user_id` = ' + user_id + " AND `favorites`.`type`=\"partners\";",
         (err, rows, fields) => {
             if (err) {
-                done('Unspecified error fetching user favorites.');
+                console.log(err);
+                done('Unspecified error fetching user favorite partners.');
             } else {
                 done(null, rows);
             }
@@ -405,14 +415,14 @@ function getFavoritePartners(id, done) {
 }
 exports.getFavoritePartners = getFavoritePartners;
 
-//TODO
 function getFavoriteVendors(id, done) {
     var connection = db.createConnection();
     var user_id = connection.escape(id.user_id);
-    connection.query('SELECT * FROM `favorites` WHERE `user_id` = ' + user_id + ";",
+    connection.query('SELECT `favorites`.* , `users`.`companyName` ' +
+    'FROM `favorites` JOIN `users` ON `favorites`.`company_id` = `users`.`id` WHERE `user_id` = ' + user_id + " AND `favorites`.`type`=\"vendors\";",
         (err, rows, fields) => {
             if (err) {
-                done('Unspecified error fetching user favorites.');
+                done('Unspecified error fetching user favorite vendors.');
             } else {
                 done(null, rows);
             }
@@ -421,14 +431,16 @@ function getFavoriteVendors(id, done) {
 }
 exports.getFavoriteVendors = getFavoriteVendors;
 
-function getProfilePage(id, done) {
+function getProfilePage(key, done) {
     var connection = db.createConnection();
-    var profile_id = connection.escape(id);
+    var profile_id = connection.escape(key.profile_id);
+    var user_id = connection.escape(key.user_id);
     
-    connection.query('SELECT `u`.*, NULL AS `password`, `s`.`name` AS `stack_name`' + 
+    connection.query('SELECT `u`.*, NULL AS `password`, `s`.`name` AS `stack_name`, `f`.id AS `favorite`' + 
         'FROM userstacks AS `us` JOIN stacks AS `s`ON `us`.`stack_id` = `s`.`id`' +
         'JOIN users as `u` ON `u`.`id` = `us`.`user_id`' + 
-        'WHERE `us`.`user_id` = ' + profile_id,
+        'LEFT JOIN favorites as `f` ON `f`.`company_id` = `us`.`user_id` AND `f`.`user_id` = ' + user_id +
+        ' WHERE `us`.`user_id` = ' + profile_id,
         (err, rows, fields) => {
             if (err) {
                 console.log(err);
@@ -450,3 +462,62 @@ function getProfilePage(id, done) {
     connection.end();
 }
 exports.getProfilePage = getProfilePage;
+
+function getIsFavorite(id, done) {
+    var connection = db.createConnection();
+    var user_id = connection.escape(id.user_id);
+    var company_id = connection.escape (id.company_id);
+    connection.query('SELECT * FROM `favorites` WHERE `user_id` = ' + user_id + " AND `company_id` =" + company_id + ";",
+        (err, rows, fields) => {
+            if (err) {
+                done('Unspecified error fetching isFavorite.');
+            } else {
+                done(null, rows);
+            }
+        })
+    connection.end();
+}
+exports.getIsFavorite = getIsFavorite;
+
+
+function getVendorSearch(id, done) {
+    var connection = db.createConnection();
+    var user_id = connection.escape(id);
+    var queryStr =         'SELECT `created_at`, `stacks`.`name` AS `stack`, `capabilities`.`name` AS `capability` ' +
+    'FROM `searchhistory` JOIN `stacks` ON `searchhistory`.`ref_stack_id` = `stacks`.`id` ' +
+    'JOIN `capabilities` ON `stacks`.`capability_id` = `capabilities`.`id` ' +
+    'WHERE `user_id` = ' + user_id + " AND type =\"vendors\";"
+    console.log(queryStr);
+    connection.query(
+        queryStr,   
+        (err, rows, fields) => {
+            if (err) {
+                done('Unspecified error fetching user favorites.');
+            } else {
+                done(null, rows);
+            }
+        })
+    connection.end();
+}
+exports.getVendorSearch = getVendorSearch;
+
+function getPartnerSearch(id, done) {
+    var connection = db.createConnection();
+    var user_id = connection.escape(id);
+    var queryStr =         'SELECT `created_at`, `stacks`.`name` AS `stack`, `capabilities`.`name` AS `capability` ' +
+    'FROM `searchhistory` JOIN `stacks` ON `searchhistory`.`ref_stack_id` = `stacks`.`id` ' +
+    'JOIN `capabilities` ON `stacks`.`capability_id` = `capabilities`.`id` ' +
+    'WHERE `user_id` = ' + user_id + " AND type =\"partners\";"
+    console.log(queryStr);
+    connection.query(
+        queryStr,   
+        (err, rows, fields) => {
+            if (err) {
+                done('Unspecified error fetching user favorites.');
+            } else {
+                done(null, rows);
+            }
+        })
+    connection.end();
+}
+exports.getPartnerSearch = getPartnerSearch;

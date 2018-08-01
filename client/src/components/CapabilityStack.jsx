@@ -52,9 +52,23 @@ class CapabilityStack extends Component {
                     </li>
                 );
             });
+            var capabilityName = capability.name.toLowerCase();
+            if(capability.name.trim().indexOf(' ') != -1) {
+                var arr = capabilityName.split(" ");
+                capabilityName = "";
+                for(var s in arr) {
+                    capabilityName += arr[s] + "-";
+                }
+            } else {
+                capabilityName += "-";
+            }
+            const imageSrc = require("../images/" + capabilityName + "stack-icon.png");
             return (
-                <div className="cstack" key={capability.id}>
-                    <h3 className="cstack-name">{capability.name}</h3>
+                <div className="cstack" key={capability.id}>           
+                    <h3 className="cstack-name"> 
+                        <img className="stack-icon" src={imageSrc} /> 
+                        {capability.name}
+                    </h3>
                     <ul>
                         {stacklist}
                     </ul>

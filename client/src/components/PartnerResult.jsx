@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import './Result.css';
 import { Link } from "react-router-dom";
-
+import FavoriteButton from './FavoriteButton';
 
 class PartnerResult extends Component {
     render() {
@@ -10,12 +10,13 @@ class PartnerResult extends Component {
                 {stack}
             </span>);
         });
-        const profileLink = `../../profile/` + this.props.id;
+        const profileLink = `../../profile/` + this.props.type + "/" + this.props.id;
         return (
             <div className="result">
-                <h3 className="result-title"><Link to= {profileLink}>{this.props.companyName}</Link></h3>
+                <h3 className="result-title"><Link to={profileLink}>{this.props.companyName}</Link></h3>
                 <div className="result-content">
                     <div className="result-description">
+                        <FavoriteButton company_id= {this.props.id} type={this.props.type}/>
                         <h4>Description</h4>
                         <p>loremn</p>
                         <h4>Stacks</h4>

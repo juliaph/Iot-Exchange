@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import api from '../api';
-
+import FavoriteButton from '../components/FavoriteButton';
 class Profile extends Component {
   constructor(props) {
     super(props);
-
     
     this.state = {
       profile: {
         stacks: [],
       },
-      message: null
+      message: null,
   };
 
     api.profile_page(this.props.match.params.id, (error, response) => {
@@ -37,6 +36,7 @@ class Profile extends Component {
     return (
       <div>
         <h2> {this.state.profile.companyName} </h2>
+        <FavoriteButton type={this.props.match.params.type} company_id={this.props.match.params.id}/>
         <h4> About </h4>
         <p> {this.state.profile.description} </p>
         <h4> Capability Stacks </h4>

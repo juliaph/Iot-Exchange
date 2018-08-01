@@ -32,19 +32,21 @@ app.post('/api/offering', routes.offering.post);
 app.delete('/api/offering/:id', routes.offering.delete);
 
 app.post('/api/search/:type', routes.search.post);
+app.get('/api/search/vendors', routes.search.getVendors);
+app.get('/api/search/partners', routes.search.getPartners);
+
 
 app.get('/api/capability', routes.capability.get);
 
 app.get('/api/profile/:id', routes.profile.get);
 
 app.get('/api/favorites', routes.favorites.get);
+app.get('/api/favorites/isFavorite/:company_id', routes.favorites.getIsFavorite);
 app.post('/api/favorites/:company_id', routes.favorites.post);
 app.delete('/api/favorites/:id', routes.favorites.delete);
-//TODO
-app.put('/api/favorites/:company_id', routes.favorites.put);
-//TODO
+
+app.put('/api/favorites/:company_id', routes.favorites.put);//TODO
 app.get('/api/favorites/partners', routes.favorites.getPartners);
-//TODO
 app.get('/api/favorites/vendors', routes.favorites.getVendors);
 
 app.set('port', CONFIG.port || 1337);

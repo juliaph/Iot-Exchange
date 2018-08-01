@@ -15,6 +15,7 @@ import ManagePartner from './pages/ManagePartner';
 import Results from './pages/Results';
 import ManageVendor from './pages/ManageVendor';
 import Profile from './pages/Profile';
+import MatchHistory from './pages/MatchHistory';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -146,7 +147,8 @@ class App extends Component {
                         <PrivateRoute path="/results/:type/:query" component={Results} />
                         <PrivateRoute path="/manage-partner" component={ManagePartner} />
                         <PrivateRoute path="/manage-vendor" component={ManageVendor} />
-                        <PrivateRoute path="/profile/:id" component={Profile} />
+                        <PrivateRoute path="/profile/:type/:id" component={Profile} />
+                        <PrivateRoute path="/match-history" component={MatchHistory} />
                     </Switch>
                     <footer>
                         <section>

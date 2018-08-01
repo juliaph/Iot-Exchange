@@ -1,8 +1,8 @@
 ﻿import $ from 'jquery';
 
 export default {
-    // endpoint: 'http://13.57.7.240:1337', // production (fix later when deployed)
-    endpoint: 'http://localhost:1337', // development
+    endpoint: 'http://13.57.7.240:4000', // production (fix later when deployed)
+    // endpoint: 'http://localhost:1337', // development
     tokenKey: 'bearer:token',
     getToken() {
         return sessionStorage.getItem(this.tokenKey);
@@ -70,7 +70,6 @@ export default {
             },
             dataType: 'json'
         }).done((response) => {
-            console.log(response);
             done(null, response);
         }).fail((xhr) => {
             if (xhr.responseJSON) {
@@ -125,6 +124,9 @@ export default {
             method: 'POST',
             data: {
                 stacks: stack || []
+            },
+            headers: {
+                'Authorization': 'Bearer ' + this.getToken()
             }
         }).done((response) => {
             done(null, response);
@@ -209,5 +211,128 @@ export default {
                 done('Unable to load profile');
             };
         });
-    }
+    },
+    post_favorite(company_id, type, done) {
+        $.ajax({
+            url: this.endpoint + '/api/favorites/' + company_id,
+            data: {
+                type: type
+            },
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + this.getToken()
+            },
+            dataType: 'json'
+        }).done((response) => {
+            done(null, response);
+        }).fail((xhr) => {
+            if(xhr.responseJSON) {
+                done(xhr.responseJSON);
+            } else {
+                done('Unable to post favorite');
+            }
+        });
+    },
+    remove_favorite(company_id, done) {
+        $.ajax({
+            url: this.endpoint + '/api/favorites/' + company_id,
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + this.getToken()
+            }
+        }).done((response) => {
+            done(null, response);
+        }).fail((xhr) => {
+            if (xhr.responseJSON) {
+                done(xhr.responseJSON);
+            } else {
+                done('Unable to remove favorite.');
+            }
+        });
+    },
+    is_favorite(company_id, done) {
+        $.ajax({
+            url: this.endpoint + '/api/favorites/isFavorite/' + company_id,
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + this.getToken()
+            }
+        }).done((response) => {
+            done(null, response);
+        }).fail((xhr) => {
+            if (xhr.responseJSON) {
+                done(xhr.responseJSON);
+            } else {
+                done('Unable to get isFavorite.');
+            }
+        });
+    },
+    get_favorite_vendors(done) {
+        $.ajax({
+            url: this.endpoint + '/api/favorites/vendors',
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + this.getToken()
+            }
+        }).done((response) => {
+            done(null, response);
+        }).fail((xhr) => {
+            if (xhr.responseJSON) {
+                done(xhr.responseJSON);
+            } else {
+                done('Unable to get favorite vendors.');
+            }
+        });
+    },
+    get_favorite_partners(done) {
+        $.ajax({
+            url: this.endpoint + '/api/favorites/partners',
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + this.getToken()
+            }
+        }).done((response) => {
+            done(null, response);
+        }).fail((xhr) => {
+            if (xhr.responseJSON) {
+                done(xhr.responseJSON);
+            } else {
+                done('Unable to get favorite vendors.');
+            }
+        });
+    },
+    get_partner_search(done) {
+        $.ajax({
+            url: this.endpoint + '/api/search/partners',
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + this.getToken()
+            }
+        }).done((response) => {
+            done(null, response);
+        }).fail((xhr) => {
+            if (xhr.responseJSON) {
+                done(xhr.responseJSON);
+            } else {
+                done('Unable to get partner searches.');
+            }
+        });
+    },
+    get_vendor_search(done) {
+        $.ajax({
+            url: this.endpoint + '/api/search/vendors',
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + this.getToken()
+            }
+        }).done((response) => {
+            done(null, response);
+        }).fail((xhr) => {
+            if (xhr.responseJSON) {
+                done(xhr.responseJSON);
+            } else {
+                done('Unable to get vendor searches.');
+            }
+        });
+    },
 };
